@@ -1,0 +1,14 @@
+{
+    "name": "NotifyVisitors Push Notification",
+    "short_name": "NotifyVisitors Push Notification",
+    "icons": [{
+          "src": "https://s3.amazonaws.com/notifypush/confirm-popup-logo.png",
+          "sizes": "192x192"
+        }],
+    "start_url": "https://www.notifyvisitors.com",
+    "display": "standalone",
+    "gcm_sender_id": "229435420617",
+
+    "//": "gcm_user_visible_only is only needed until Chrome 44 is in stable ",
+    "gcm_user_visible_only": true
+}

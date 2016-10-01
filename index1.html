@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <meta name="google" content="notranslate" />
+    
+    <title></title>
+    
+    <!--<link rel="manifest" href="/manifest-test.json">-->
+    <link rel="manifest" href="/manifest.json">
+ 
+    <style>
+    #pushnotify .bgstyle {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 1501;
+        background: rgba(0,0,0,.8);
+        opacity: 2;
+        filter: alpha(opacity=2);
+    }
+    #userinfoimg {
+        position: fixed;
+        left: 318px;
+        z-index: 9999;
+        top: 133px;
+    }
+    #userinfoimgmob {
+        position: fixed;
+        left: 318px;
+        z-index: 9999;
+        bottom: 160px;
+    }
+    #pushnotify {
+        position: relative;
+        z-index: 8888;
+   }
+    </style>
+</head>
+
+<body>
+        <div style="margin-top: 18%; text-align: center; font-family: 'Lato',sans-serif; font-size: 20px; padding: 20px 20px 0px 20px;">
+<div style="width: 118px; margin: 10px auto;"><img style="max-width: 100%;" id="js-logo-customer" src="http://www.engineering.careers360.com/sites/all/modules/custom/common/images/logo.png" /></div>
+<div id="js-text">
+<p style="margin-top: 10px;" id="js-user-customize-text">Click on <strong>'Allow'</strong> to confirm your subscription.</p>
+<p style="margin-top: 10px; font-size: 13px;" id="js-offer-text">You will get updates about latest Hollywood,Bolllywood Movies &amp; Trailers of your interest and manage your subscription with one click.</p>
+</div>
+</div>       
+        <div id="pushnotify" class="noshow" style="display: block;">
+            <div class="bgstyle"></div>
+            <img id="userinfoimg" src="https://s3.amazonaws.com/notifypush/static/permission_box/web.png" height="60" width="211" alt="Please Click on allow" style="left: 133px;display:block;">
+            <img id="userinfoimgmob" src="https://s3.amazonaws.com/notifypush/static/permission_box/mobile.png" height="60" width="211" alt="Please Click on allow" style="left: 133px;display:block;">
+        </div> 
+        
+        <script>
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+           document.getElementById('userinfoimg').style.display = "none";
+        } else {
+           document.getElementById('userinfoimgmob').style.display = "none";
+        }    
+        var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+        if(isSafari == true){
+           document.getElementById('userinfoimg').style.left = "50%";
+           document.getElementById('userinfoimg').style.top = "25%";
+        }
+        </script>
+        
+        <div style="text-align:center;margin-top: 20px;">
+          <a href="https://www.notifyvisitors.com" target="_blank" style="text-decoration: none;" class="anchor_pushcrew">
+            <img class="pushcrew-branding-logo" width="13" src="https://s3.amazonaws.com/notifypush/confirm-popup-logo.png" style="padding-top: 7px;">
+          </a>
+          <a href="https://www.notifyvisitors.com" target="_blank" style="text-decoration: none;font-family:sans-serif;color: black;font-size: 13px;" class="anchor_pushcrew">   Powered by Tunemovie.tk
+          </a>
+         </div>
+         <script>
+        if('serviceWorker' in navigator){
+               
+               if(!("Notification" in window)) {
+                   
+               }else{
+                   if(Notification.permission === "granted"){
+                            initialiseSW(navigator);
+                    }else if(Notification.permission !== 'denied' || Notification.permission === "default"){
+                        window.Notification.requestPermission(function() {
+                            // If the user accepts, let's create a notification
+                            if(window.Notification.permission == "granted"){
+                                
+                                initialiseSW(navigator);
+                            }
+                          });
+
+                    }else if(Notification.permission == 'denied'){
+                        savePush('',Notification.permission);   
+                    }
+               }
+                
+        }
+        function initialiseSW(navigator){
+                var d = new Date(); 
+                var uni = d.getHours()+d.getMinutes()+d.getSeconds(); 
+
+             navigator.serviceWorker.register('https://asmaster093.github.io/pushWorker.js?'+uni).then(
+                    function(serviceWorkerRegistration) {
+                      serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}).then(
+                        function(pushSubscription){
+                            
+                          if(pushSubscription.endpoint != ''){
+                              
+                              savePush(pushSubscription.endpoint,Notification.permission);
+                          }
+
+                          // The push subscription details needed by the application
+                          // server are now available, and can be sent to it using,
+                          // for example, an XMLHttpRequest.
+                        }, function(error) {
+                          // During development it often helps to log errors to the
+                          // console. In a production environment it might make sense to
+                          // also report information about errors back to the
+                          // application server.
+                          console.log(error);
+                          //window.close();
+                        }
+                      );
+                    });
+        }
+        function savePush(endp,chkPr){
+            if(typeof endp == 'undefined' || endp == ''){
+                endp = '';
+            }
+            var ua = window.navigator.userAgent;
+            var msch = ua.indexOf("Chrome");
+            var msfx = ua.indexOf("Firefox");
+            var browser = 0;
+            if(msch > 0){
+                browser = 2;
+            }else if(msfx > 0){
+                browser = 1;
+            }
+            $.ajax({
+                    type:"POST",
+                    url:'http://www.putlockermojo.com/push/pushSubscribeAjax.php',
+                    data:{'endpoint':endp,'action':'indentifyPush','subif':chkPr,'browser':browser,'page_url':'1'},
+                    success:function(res){
+                       
+                    }
+            });
+        }
+        
+       
+    </script> 
+        </body>
+</html>
+
