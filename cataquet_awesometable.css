@@ -1,0 +1,77 @@
+#chart1 .google-visualization-table-tr-head{
+	background-color:rgb(0, 123, 191) ! important;
+}
+#chart1 .google-visualization-table-table .google-visualization-table .gradient{
+	background:none ! important;
+}
+#chart1 .google-visualization-table-table .gradient, .google-visualization-table-div-page .gradient{
+	background:none ! important;
+}
+.google-visualization-table-table th:nth-child(1){
+	text-align:left;
+	width:11%;
+	color:#fff;
+}
+.google-visualization-table-table th:nth-child(2){
+	text-align:left;
+	width:13%;
+	color:#fff;
+}
+.google-visualization-table-table th:nth-child(3){
+	text-align:center;
+	width:8%;
+	color:#fff;
+}
+.google-visualization-table-table th:nth-child(4){
+	text-align:center;
+	width:6%;
+	color:#fff;
+}
+.google-visualization-table-table th:nth-child(5){
+	text-align:center;
+	width:7%;
+	color:#fff;
+}
+.google-visualization-table-table th:nth-child(6){
+	text-align:center;
+	width:8%;
+	color:#fff;
+}
+
+.google-visualization-table-table td:nth-child(3){
+	text-align:center;
+
+}
+.google-visualization-table-table td:nth-child(4){
+	text-align:center;
+	
+}
+.google-visualization-table-table td:nth-child(5){
+	text-align:center;
+	
+}
+.google-visualization-table-table td:nth-child(6){
+	text-align:center;
+	
+}
+
+.google-visualization-table-table th:nth-child(7){
+	text-align:left;
+	width:12%;
+	color:#fff;
+}
+.google-visualization-table-table th:nth-child(8){
+	text-align:left;
+	width:13%;
+	color:#fff;
+}
+.google-visualization-table-table th:nth-child(9){
+	text-align:left;
+	width:8%;
+	color:#fff;
+}
+.google-visualization-table-table th:nth-child(10){
+	text-align:left;
+	width:13%;
+	color:#fff;
+}
